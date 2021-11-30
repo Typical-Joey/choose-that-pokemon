@@ -1,11 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
-
+import SideBar from "./SideBar";
+import MainScreen from "./MainScreen";
 
 function App() {
 
   const [pokemon, setPokemon] = useState('');
-
   function getPokemon(){
     const url = '/getPokemon'; // Backend endpoint
     axios.get(url)
@@ -20,9 +20,8 @@ function App() {
 
   return (
     <>
-      <h1>Hello World</h1> 
-      {pokemon}
-      <button onClick={getPokemon}>Click me</button>
+      <SideBar />
+      <MainScreen />
     </>
   );
 }
