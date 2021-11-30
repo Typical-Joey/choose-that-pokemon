@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const axios = require("axios");
+const { response } = require("express");
 
 const app = express();
 app.use(bodyParser.urlencoded({
@@ -8,15 +9,26 @@ app.use(bodyParser.urlencoded({
 }));
 
 
-app.get("/getPokemon", function(req, res){
+app.get("/getPokemon", async function(req, res){
   let pokemonId = 35;
   const url = `https://pokeapi.co/api/v2/pokemon/${pokemonId}/`;
-  axios.get(url).then(response => {
-    console.log(response);
-    res.send(response);
-  }).catch(error => {
+  
+  await axios.get(url)
+  .then(response => {
+    // TypeError: Converting circular structure to JSON
+    // console.log(response.data);
+    const data = response.data;
+
+    const pokemonData = {
+      name: data.name,
+      weight: data.weight,
+    }
+    res.send(pokemonData);
+
+    })
+  .catch(error => {
     console.log(error);
-    res.send(error);
+    return error;
   });
 });
 
