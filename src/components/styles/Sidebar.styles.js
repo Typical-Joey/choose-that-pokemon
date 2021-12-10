@@ -33,10 +33,6 @@ export const SidebarHeader = styled.div`
 
 `;
 
-export const SidebarHeaderText = styled.h1`
-  
-`;
-
 export const SidebarBody = styled.div`
   height: 89.9vh;
   width: 25vw;
