@@ -1,7 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const axios = require("axios");
-const { response } = require("express");
 
 const app = express();
 app.use(bodyParser.urlencoded({
@@ -15,8 +14,6 @@ app.get("/getPokemon", async function(req, res){
   
   await axios.get(url)
   .then(response => {
-    // TypeError: Converting circular structure to JSON
-    // console.log(response.data);
     const data = response.data;
 
     const pokemonData = {
